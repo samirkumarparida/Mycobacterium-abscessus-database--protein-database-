@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head><script src="/docs/5.3/assets/js/color-modes.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.112.5">
+
+    <title>Sign-in</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/">
+
+    
+    <!-- Custom styles for this template -->
+    <link href="./styles/signstyle.css" rel="stylesheet">
+  </head>
+  <body>
+    <!--------------------------------- Header and Navbar starts ----------------------------------->
+
+    <header>
+      <nav>
+          <h1>CepA Beta-Lactamase Database</h1>
+          <ul>
+              <li>
+                  <a href="./index.html">Home</a>
+              </li>
+              <li>
+                  <a href="./panel/Data.html">Collective Data</a>                    
+              </li>
+              <li>
+                  <a href="./faq.html">FAQ's</a>
+              </li>
+              <li>
+                <a href="./sign.html">Sign In</a>
+            </li>
+          </ul>
+      </nav>
+  </header>
+
+  <!---------------------------------- Header and Navbar ends ------------------------------------>
+
+  <!---------------------------------- Login Container starts ------------------------------------>
+
+  <div class="login-container">
+      <div class="login-box-1">
+          <h1>Login to your account.</h1>
+          <p>Enter your username and password to login</p>
+          <form name="login_form" id="login_form" method="post" enctype="multipart/form-data">
+            <div class="col-sm-4">
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="text" name="login_email" id="login_email" class="form-control" placeholder="Enter your email">
+                </div>
+                
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" name="login_password" id="login_password" class="form-control"  placeholder="Enter your password">
+                </div>
+               <div class="form-login"> <button type="button" id="login" name="login" class="btn btn-success">Login</button>
+               </div>            </div><!-- end col -->
+
+               <!-- <p>Don't have an account? <a href="../Register/achiever-register.html">Register</a></p> -->
+          </form>
+      </div>
+  </div>
+
+  <!----------------------------------- Login Container ends ------------------------------------->
+   
+  <!--------------------------------------- Footer starts ---------------------------------------->
+
+  <footer>
+      <div class="mail">
+          <h4>Contact us by mailing at : </h4>
+          <a href="mailto:saugata.iitk@gmail.com">saugata.iitk@gmail.com</a>
+      </div> 
+      <div class="copyright-text">
+          <p>&copy; Copyright 2022, CepA Beta-Lactamase, Hazra Lab.</p>
+      </div>
+  </footer>
+
+  <!---------------------------------------- Footer ends ----------------------------------------->
+  
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
+    import { getDatabase, update,ref } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js";
+    import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyAEnyJybGUKfAP2uNF4-dEexcy5HMueRKo",
+      authDomain: "cepa-5abb2.firebaseapp.com",
+      projectId: "cepa-5abb2",
+      storageBucket: "cepa-5abb2.appspot.com",
+      messagingSenderId: "26860837270",
+      appId: "1:26860837270:web:fa913f7ae4e4488a5025b7",
+      measurementId: "G-W5BJBXD9K8"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+
+const database=getDatabase(app);
+const auth = getAuth();
+
+
+login.addEventListener("click", function(){
+    var email = document.getElementById("login_email").value;
+    var password = document.getElementById("login_password").value;
+
+signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    // Signed in 
+    const user = userCredential.user;
+    const dt = new Date();
+    update(ref(database,'users/' + user.uid),{
+      last_login : dt,
+    })
+    console.log(user);
+    alert(user.email+"login successful!!");
+    // ...
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorMessage);
+    alert(errorMessage);
+  });
+});
+
+const user = auth.currentUser;
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    const uid = user.uid;
+    // ...
+  } else {
+    // User is signed out
+    // ...
+  }
+});
+
+logout.addEventListener("click",function(){
+    signOut(auth).then(()=>{
+        console.log("Log-out successful!!")
+        alert("sign-out successful!!")
+     
+    }).catch((error)=>{
+      const errorCode = error.code;
+    const errorMessage = error.message;
+        console.log(errorMessage);
+    alert(errorMessage);
+    });
+});
+
+
+  
+
+      document.getElementById("login_password").addEventListener("keyup", function (event) {
+        if (event.key === "Enter") {
+          document.getElementById("login").click(); // Trigger the login button click event
+        }
+      });
+  </script>
+
+  </body>
+
+
+
+ 
+</html>

@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hazra lab</title>
+     <!--bootstrap scripts--->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  
+  <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
+  
+  <link rel="stylesheet" href="../styles/data.css">  
+   
+  </head>
+  <body>
+   
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-bg-light">
+        <h1>CepA Beta-Lactamase Database</h1>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent" style="padding-right: 10px;">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="Data.html">Collective Data</a>
+            </li>
+           
+            <li class="nav-item">
+              <a class="nav-link" href="../faq.html">FAQ</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="../sign.html">Sign-in</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <section >
+
+        <div class="wrapper">
+            <div class="sidebar">
+                
+              <ul >
+                <li class="sidepanel " role="presentation">
+                  <a href="Data.html"><button class="link-button ">Sequences</button></a>
+                </li>
+                <li class="sidepanel"  role="presentation">
+                  <a href="../panel/structure.html">
+                    <button class="link-button">Structures</button>
+                  </a>
+                </li>
+                <li class="sidepanel" role="presentation">
+                  <a href="../panel/prodrug.html">
+                    <button class="link-button">Protein-Drug Interaction</button>
+                  </a>
+                </li>
+                <li class="sidepanel" role="presentation">
+                  <a href="../panel/variantanalysis.html">
+                    <button class="link-button">Variant Analysis</button>
+                  </a>
+                </li>
+                <li class="sidepanel"  role="presentation">
+                  <a href="../panel/prodynamics.html">
+                    <button class="link-button">Protein Dynamics</button>
+                  </a>
+                </li>
+                <li class="sidepanel active"  role="presentation">
+                    <a href="../panel/Network.html">
+                      <button class="link-button">Network</button>
+                    </a>
+                  </li>
+              </ul>
+                
+            </div>
+
+            <div class="header">
+              <div>
+                
+              </div> 
+              <div class="inittext">
+                <br>
+              <h5> <br><strong><p> Each node represents a specific genetic variant, and the node size corresponds to the number of mutations within that variant. The connections between nodes (edges) represent shared mutations between variants. The thickness of each edge is determined by the degree of shared mutations, providing a continuous mapping of genetic similarity. This network offers a clear and intuitive way to explore relationships and commonalities among variants based on their mutation profiles. 
+            </p> </strong> 
+              </div><br>
+              <div class="info_body">
+                
+                <a href="../network/network.png">Network</a>
+                  <br>
+                
+              </div>
+            </div>
+            
+
+         </div>
+         
+
+
+    </section>
+   
+<footer id="footer">
+  <h4 style="font-weight: bold;">Contact us by mailing at : </h4>
+  <a href="mailto:saugata.iitk@gmail.com" style="text-decoration: underline;">saugata.iitk@gmail.com</a>
+  <p >&copy; Copyright 2022, CepA Beta-Lactamase, Hazra Lab.</p>
+  </footer>
+   
+  <script>
+    function viewFASTA() {
+        // Replace 'path/to/your/fasta_file.fasta' with the actual URL of your FASTA file
+        var fastaFileURL = '../sequence_data/CepA fasta files/CepA_WT_AAA21532.fasta';
+
+        // Open the FASTA file in a new tab
+        window.open(fastaFileURL, '_blank');
+    }
+</script>
+
+  </body>
+</html>
